@@ -12,7 +12,6 @@ namespace DientesLimpios.Dominio.Entidades
 
         public Paciente(string nombre, Email email)
         {
-
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 throw new EXcepcionDeReglaDeNegocio($"El {nameof(nombre)} es obligatorio ");
