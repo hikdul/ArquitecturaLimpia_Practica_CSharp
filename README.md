@@ -53,6 +53,8 @@ Esta capa no tiene con sigo los detalles de implementacion o detalles tecnicos; 
 - es muy util para el contexto de arquitectura de limpia.
 - permite separa incluso elementos tecnicos como por ejemplos tener base de datos distintas para lectura(consultas) y escritura(comandos).
 
+__Unit of work:__ este patron lo que hace es genera transaciones para que si todos los evento ocurren de manera positiva, pues todo se ejecute; y si no es asi o si al menos un elemento de la lista de tareas se cae, pues todo se caiga.
+
 
 ### Infraestructura
 describir capa
