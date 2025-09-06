@@ -2,6 +2,7 @@ using System;
 using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Excepcion;
+using DientesLimpios.Dominio.Entidades;
 using FluentValidation;
 //using Internal;
 

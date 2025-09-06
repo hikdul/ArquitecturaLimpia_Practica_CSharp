@@ -2,10 +2,10 @@ using System;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
 using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repository;
-using FluentValidation;
-using FluentValidation.Result;
-using NSubstitute;
 using DientesLimpios.Dominio.Entidades;
+using FluentValidation;
+using FluentValidation.Results;
+using NSubstitute;
 
 namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
 {
@@ -13,7 +13,7 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
     public class CasoDeUsoCrearConsultorioTest
     {
         private IRepositoryConsultorios repository;
-        private IValidator<CommandCrearConsultorio> validator;
+        private IValidator<CommandCrearConsultorio> validador;
         private IUnidadDeTrabajo unidadDeTrabajo;
         private CasoDeUsoCrearConsultorio casoDeUso;
 
@@ -21,29 +21,27 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
         public void Setup()
         {
             repository = Substitute.For<IRepositoryConsultorios>();
-            validator = Substitute.For<IValidator<CommandCrearConsultorio>>();
+            validador = Substitute.For<IValidator<CommandCrearConsultorio>>();
             unidadDeTrabajo = Substitute.For<IUnidadDeTrabajo>();
-            casoDeUso = new CasoDeUsoCrearConsultorio(repository, unidadDeTrabajo, validator);
+            casoDeUso = new CasoDeUsoCrearConsultorio(repository, unidadDeTrabajo, validador);
         }
 
         [TestMethod]
         public async Task Handle_commandoValido_ObtenemoIdConsultorio()
         {
-            string name = Guid.NewGuid().ToString().Replace("-","");
+            string name = Guid.NewGuid().ToString().Replace("-", "");
             var command = new CommandCrearConsultorio { Nombre = name };
-            validador.ValidateAsync(command).Return(new ValidationResult());
+            validador.ValidateAsync(command).Returns(new ValidationResult());
 
             var consultorioCreated = new Consultorio(name);
-            repository.Agregar(Arg.any<Consultorio>()).Return(consultorioCreated);
+            repository.Agregar(Arg.Any<Consultorio>()).Returns(consultorioCreated);
 
             var result = await casoDeUso.Handle(command);
 
-            await validator.Received(1).ValidateAsync(command);
+            await validador.Received(1).ValidateAsync(command);
             await repository.Received(1).Agregar(Arg.Any<Consultorio>());
             await unidadDeTrabajo.Received(1).Persistir();
-            Assirt.AreNotEqual(Guid.Empty, result);
-
-
+            Assert.AreNotEqual(Guid.Empty, result);
         }
     }
 }

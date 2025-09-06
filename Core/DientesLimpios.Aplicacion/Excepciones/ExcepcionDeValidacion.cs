@@ -12,7 +12,7 @@ namespace DientesLimpios.Aplicacion.Excepcion
         {
             foreach (var err in validationResult.Errors)
             {
-                ErroresDeValidacion.Add(Err.ErrorMessage);
+                ErroresDeValidacion.Add(err.ErrorMessage);
             }
         }
     }
