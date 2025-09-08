@@ -14,7 +14,7 @@ describir capa
 
 ### Core
 
-### Capa de Dominio
+#### Capa de Dominio
 Caracteristicas de esta capa de dominio es el corazon del sistema, modela el negocio de manera precisa sin preocuparse en como trabajo tecnicamente; algunas caracteristicas son:
 
 * es donde se modelan conceptos, gegas o invariantes.
@@ -33,7 +33,7 @@ Esta capa no debe de contener ningun detalles tecnico.
 
 Evitar tener __entidades anemicas__, que son aquellas entidades creadas pero que aparte de las propiedades no ofrecen ningun tipo de logica sobre las actividades del negocio.
 
-### Capa De Aplicacion
+#### Capa De Aplicacion
 
 Esta capa solo tendra comunicacion con la capa de dominio. de modo simple la capa de aplicacion se encarga de orquestar los casos de uso del sistema, donde a su ves los casos de uso son las acciones especificas que se realizan para cubrir las necesidades de los usuarios.
 

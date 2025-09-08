@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio
 {
-    public class ValidadorComandoCrearConsultorio :  AbstractValidator<CommandCrearConsultorio>
+    public class ValidadorComandoCrearConsultorio : AbstractValidator<CommandCrearConsultorio>
     {
         public ValidadorComandoCrearConsultorio()
         {
