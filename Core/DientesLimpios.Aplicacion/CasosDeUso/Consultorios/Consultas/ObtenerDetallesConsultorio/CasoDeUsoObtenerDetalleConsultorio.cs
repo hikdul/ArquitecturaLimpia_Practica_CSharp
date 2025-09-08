@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Excepcion;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
@@ -9,14 +10,14 @@ namespace DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio
     public class CasoDeUsoObtenerDetalleConsultorio
         : IRequestHandler<ConsultaObtenerDetalleConsultorio, ConsultarioDetalleDTO>
     {
-        private readonly IRepositorioConsultorio repositorio;
+        private readonly IRepositoryConsultorios repositorio;
 
         public CasoDeUsoObtenerDetalleConsultorio(IRepositoryConsultorios repositorio)
         {
             this.repositorio = repositorio;
         }
 
-        public async Task<ConsultarioDetalleDTO> Hanle(ConsultaObtenerDetalleConsultorio request)
+        public async Task<ConsultarioDetalleDTO> Handle(ConsultaObtenerDetalleConsultorio request)
         {
             var consultorio = await repositorio.ObtenerPorId(request.Id);
             if (consultorio is null)
