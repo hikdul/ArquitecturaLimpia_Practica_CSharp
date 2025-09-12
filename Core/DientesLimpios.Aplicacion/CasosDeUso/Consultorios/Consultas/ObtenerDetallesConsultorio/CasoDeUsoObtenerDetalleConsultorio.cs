@@ -25,12 +25,7 @@ namespace DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio
                 throw new ExcepcionNoEncontrado();
             }
 
-            var dto = new ConsultarioDetalleDTO
-            {
-                Id = consultorio.Id,
-                Nombre = consultorio.Nombre,
-            };
-            return dto;
+            return consultorio.ADto();
         }
     }
 }
