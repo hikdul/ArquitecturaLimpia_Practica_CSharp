@@ -57,7 +57,26 @@ __Unit of work:__ este patron lo que hace es genera transaciones para que si tod
 
 
 ### Infraestructura
-describir capa
+
+esta es la capa encargada de interaccioter con elementos externos; por ejempol bases de datos, envio de correo electronico y ese tipo de servicios. Viene a ser la capa mas externa de nuestra aplicacion.
+
+Una de las nociones basicas es que esta capa no contienen ningun tipo de logica del negacio, su papel es hacer uno implementacion tecnica.
+
+la **responsabilidad** principal es implementar los contratos definidos por las capas interiones; de otro modo es la encargada de ejecutar el _"como"_.
+
+Para la comunicacion con las demas capas se usa el principio de **inversion de dependencias**
+
+Mayormente se puede tener un solo proyecto para mantener esa capa, pero en este caso vamos a trabajar con varios como son:
+
+#### Persistencia
+Se encarga de acceso a dase de datos
+
+#### General
+Para la implementacion de diferentes servicios como el correos electronico
+
+#### Identidad
+Trabaja con todo lo relacionado con auteticacion.
 
 ### Pruebas
-describir capa
+
+es la capa donde se generan las pruebas de todas las otras capas; asi de otro modo es donde se realizan las pruebas de cada elemento por separado y tiene conexion con todas las capas del sistema pero a su ves es una capa que se limita a solo realiza eso pruebas.
