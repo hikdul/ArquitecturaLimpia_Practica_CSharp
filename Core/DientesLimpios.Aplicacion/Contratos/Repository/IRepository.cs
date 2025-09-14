@@ -8,7 +8,7 @@ namespace DientesLimpios.Aplicacion.Contratos.Repository
     public interface IRepository<T>
         where T : class
     {
-        Task<T> Actualizar(T entidad);
+        Task Actualizar(T entidad);
         Task<T> ObtenerPorId(Guid id);
         Task<IEnumerable<T>> ObtenerTodos();
         Task<T> Agregar(T entidad);

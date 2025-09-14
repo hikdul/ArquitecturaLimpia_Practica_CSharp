@@ -15,17 +15,18 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsult
     {
         private readonly IRepositoryConsultorios repository;
         private readonly IUnidadDeTrabajo unidadDeTrabajo;
- //       private readonly IValidator<CommandCrearConsultorio> validator;
+
+        //       private readonly IValidator<CommandCrearConsultorio> validator;
 
         public CasoDeUsoCrearConsultorio(
             IRepositoryConsultorios repository,
             IUnidadDeTrabajo unidadDeTrabajo
-  //          IValidator<CommandCrearConsultorio> validator //?: se quita por que las validaciones se trabajaran por el mediador
+        //          IValidator<CommandCrearConsultorio> validator //?: se quita por que las validaciones se trabajaran por el mediador
         )
         {
             this.repository = repository;
             this.unidadDeTrabajo = unidadDeTrabajo;
-    //        this.validator = validator;
+            //        this.validator = validator;
         }
 
         public async Task<Guid> Handle(CommandCrearConsultorio command)
@@ -33,8 +34,8 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsult
             //var resValidator = await validator.ValidateAsync(command);
             //if (!resValidator.IsValid)
             //{
-             //   throw new ExcepcionDeValidacion(resValidator);
-           // }
+            //   throw new ExcepcionDeValidacion(resValidator);
+            // }
 
             var consultorio = new Consultorio(command.Nombre);
             try
