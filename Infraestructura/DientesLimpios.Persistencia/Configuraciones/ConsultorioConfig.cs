@@ -1,3 +1,7 @@
+using DientesLimpios.Dominio.Entidades;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 namespace DientesLimpios.Persistencia.Configuraciones
 {
     public class ConsultorioConfig : IEntityTypeConfiguration<Consultorio>

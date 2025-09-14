@@ -14,11 +14,6 @@ namespace DientesLimpios.Persistencia.Repositorios
             this.context = _context;
         }
 
-        public Task Atualizar(T entidad)
-        {
-            context.Update(entidad);
-            return Task.CompletedTask;
-        }
 
         public async Task<T> ObtenerPorId(Guid id)
         {
@@ -39,6 +34,12 @@ namespace DientesLimpios.Persistencia.Repositorios
         public Task borrar(T entidad)
         {
             context.Remove(entidad);
+            return Task.CompletedTask;
+        }
+
+        public Task Actualizar(T entidad)
+        {
+            context.Update(entidad);
             return Task.CompletedTask;
         }
     }

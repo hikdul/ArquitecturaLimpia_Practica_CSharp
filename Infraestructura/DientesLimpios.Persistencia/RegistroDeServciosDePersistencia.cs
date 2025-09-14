@@ -1,3 +1,8 @@
+using DientesLimpios.Aplicacion.Contratos.Persistencia;
+using DientesLimpios.Aplicacion.Contratos.Repository;
+using DientesLimpios.Persistencia.Repositorios;
+using DientesLimpios.Persistencia.UnidadesDeTrabajo;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DientesLimpios.Persistencia
@@ -12,7 +17,7 @@ namespace DientesLimpios.Persistencia
                 options.UseSqlServer("name=DientesLimpiosDBConnectionString")
             );
 
-            servicios.AddScoped<IRepositorioConsultorios, RepositorioConsultorios>();
+            servicios.AddScoped<IRepositoryConsultorios, RepositorioConsultorios>();
             servicios.AddScoped<IUnidadDeTrabajo, UnidadDeTrabjoEFCore>();
 
             return servicios;

@@ -21,6 +21,7 @@ namespace DientesLimpios.Persistencia.UnidadesDeTrabajo
         public Task Reversar()
         {
             // No es necesario implementar este metodo en EF Core
+            // Pero en otros casos si puede que se tenga que hacer un rollBack o algo similar.
             return Task.CompletedTask;
         }
     }
