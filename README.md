@@ -1,16 +1,23 @@
+# Dientes Limpios 
 
-# Dientes Limpios
 
+practica para trabajar el curso de Arquitectura Limpia de Felipe Gavilan. La idea de este curso es separar todo el trabajo por capas para asi en caso de que la aplicaion cresca, el trabajo de modificacion de codigo sea mas sencillo y expandible.
 
-practica para trabajar el curso de Arquitectura Limpia de Felipe Gavilan. La idea de este curso es separar todo el trabajo por capas para asi en caso de crecer el trabajo de modificacion de codigo sea mas sencillo y modificable.
+La diferencia entre este modelo de trabajo y los otros es que con este modelo antes de tener algo funcionando se lleva bastante tiempo pero luego si existen modificaciones lleva mucho menos trabajo. Puedo decir de primera mano que esto se entiende apenas el software empieza a tener forma.
 
-La diferencia entre este modelo de trabajo y los otros es que con este modelo antes de tener algo funcionando se lleva bastante tiempo pero luego si existen modificaciones lleva mucho menos trabajo.
+## Arquitectura Limpia
+
+es el modelo que vamos a usar para la construccion de la aplicacion, la idea es dividir la aplicacion por capas como se muestra en la siguiente imagen y de este modo separar las distintas partes del software en responsabilidades bien definidas y de este modo generar un convenio de trabajo donde cada capa se encarga de hacer una sola cosa.
+
+![Descripcion Arquitectura limpia](/Asserts/ArquitecturaLimpiaModelo.png)
 
 
 ## Capas
 
 ### API
-describir capa
+O __capa de presentacion(UI)__, es el punte de entrada al sistema. Esta capa no contiene logica de negocio; esta capa se mantiene bastante limpia ya que solo se construlle el comando o consulta y desde aqui los genera y por eso se ve un codigo bastante limpio. 
+
+Si hay que afirmar que esta placa depende enormemente de la capa de infraestructura y la capa de aplicaicon respectivamente.
 
 ### Core
 
