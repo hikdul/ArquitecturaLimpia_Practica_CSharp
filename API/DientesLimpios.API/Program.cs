@@ -1,5 +1,6 @@
 using DientesLimpios.Aplicacion;
 using DientesLimpios.Persistencia;
+using DientesLimpios.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ builder.Services.AgregarServiciosDePersistencia();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseManejadorDeExcepciones();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
