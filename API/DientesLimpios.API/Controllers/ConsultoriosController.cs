@@ -16,6 +16,10 @@ namespace DientesLimpios.API.Controllers
             this.mediator = mediator;
         }
 
+        /// <summary>
+        /// Abtiene el listado de consultorios
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<List<ConsultorioListadoDTO>>> Get()
         {
@@ -24,6 +28,11 @@ namespace DientesLimpios.API.Controllers
             return resultado;
         }
 
+        /// <summary>
+        /// Obtiene el id del consultorio
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<ConsultarioDetalleDTO>> Get(Guid id)
         {
@@ -35,6 +44,12 @@ namespace DientesLimpios.API.Controllers
 
             //return resultado.EsExitoso ? Ok(resultado.Valor) : NotFound();
         }
+        
+        /// <summary>
+        /// Crea un nuevo consultorio
+        /// </summary>
+        /// <param name="_in"></param>
+        /// <returns></returns>
 
         [HttpPost]
         public async Task<ActionResult> Post(Consultorio_in _in)

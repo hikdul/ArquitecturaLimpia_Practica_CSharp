@@ -2,15 +2,14 @@ using System;
 using System.Threading.Tasks;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
 using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
-//using DientesLimpios.Aplicacion.Contratos.Persistencia;
-using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Excepcion;
 using DientesLimpios.Dominio.Entidades;
+using DientesLimpios.Aplicacion.Contratos.Repository;
 using FluentValidation;
 using FluentValidation.Results;
 using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using NSubstitute.ExceptionExtensions;
+using NSubstitute.ReturnsExtensions;
 
 namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
 {

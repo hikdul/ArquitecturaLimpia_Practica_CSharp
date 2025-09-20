@@ -4,12 +4,17 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerLis
 {
     public static class MapeadorExtensions
     {
-        public static ConsultorioListadoDTO ADto(this Consultorios consultorio)
+        public static ConsultorioListadoDTO ADto(this Consultorio consultorio)
         {
             if (consultorio == null)
                 return null;
 
-            var dto = new ConsultorioListadoDTO { Id = consultorio.Id, Nombre = consultorio.Nombre };
+            var dto = new ConsultorioListadoDTO
+            {
+                Id = consultorio.Id,
+                Nombre = consultorio.Nombre
+            };
+
             return dto;
         }
     }
