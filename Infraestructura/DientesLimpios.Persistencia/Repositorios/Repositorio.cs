@@ -16,7 +16,6 @@ namespace DientesLimpios.Persistencia.Repositorios
             this.context = _context;
         }
 
-
         public async Task<T> ObtenerPorId(Guid id)
         {
             return await context.Set<T>().FindAsync(id);

@@ -1,6 +1,7 @@
 using System;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
 using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerListadoConsultorios;
 //using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,10 @@ namespace DientesLimpios.Aplicacion
                 CasoDeUsoObtenerDetalleConsultorio
             >();
 
+            services.AddScoped<
+                IRequestHandler<ConsultaObtenerListadoConsultorios, List<ConsultorioListadoDTO>>,
+                CasoDeUsoObtenerListadoConsultorios
+            >();
             return services;
         }
     }
