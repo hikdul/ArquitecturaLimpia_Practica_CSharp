@@ -1,4 +1,7 @@
+
 using DientesLimpios.Aplicacion.Excepcion;
+using System.Net;
+using System.Text.Json;
 
 namespace DientesLimpios.API.Middleware
 {
@@ -35,9 +38,9 @@ namespace DientesLimpios.API.Middleware
                 case ExcepcionNoEncontrado:
                     httpStatusCode = HttpStatusCode.NotFound;
                     break;
-                case ExcepcionDeValidacion:
+                case ExcepcionDeValidacion exv:
                     httpStatusCode = HttpStatusCode.BadRequest;
-                    resultado = JsonSerializer.Serialize(ExcepcionDeValidacion.ErroresDeValidacion);
+                    resultado = JsonSerializer.Serialize(exv.ErroresDeValidacion);
                     break;
             }
 

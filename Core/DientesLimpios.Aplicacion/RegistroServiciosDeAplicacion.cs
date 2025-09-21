@@ -1,8 +1,8 @@
 using System;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
-using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerListadoConsultorios;
-//using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
+using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,6 +30,12 @@ namespace DientesLimpios.Aplicacion
                 IRequestHandler<ConsultaObtenerListadoConsultorios, List<ConsultorioListadoDTO>>,
                 CasoDeUsoObtenerListadoConsultorios
             >();
+
+            services.AddScoped<
+                IRequestHandler<ComandoActualizarConsultorio>,
+                CasoDeUsoActualizarConsultorio
+            >();
+
             return services;
         }
     }

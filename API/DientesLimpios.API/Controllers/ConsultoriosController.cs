@@ -1,11 +1,14 @@
 using DientesLimpios.API.DTOs;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerListadoConsultorios;
 using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DientesLimpios.API.Controllers
 {
-    [APIController]
+    [ApiController]
     [Route("api/Consultorios")]
     public class ConsultoriosController : ControllerBase
     {
@@ -36,7 +39,7 @@ namespace DientesLimpios.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ConsultarioDetalleDTO>> Get(Guid id)
         {
-            var consulta = new ConsultarConsultorioPorId { Id = id };
+            var consulta = new ConsultaObtenerDetalleConsultorio { Id = id };
 
             var resultado = await mediator.Send(consulta);
 
@@ -44,7 +47,7 @@ namespace DientesLimpios.API.Controllers
 
             //return resultado.EsExitoso ? Ok(resultado.Valor) : NotFound();
         }
-        
+
         /// <summary>
         /// Crea un nuevo consultorio
         /// </summary>
@@ -52,15 +55,22 @@ namespace DientesLimpios.API.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        public async Task<ActionResult> Post(Consultorio_in _in)
+        public async Task<IActionResult> Post(Consultorio_in _in)
         {
-            var comando = new CrearConsultorio { Nombre = _in.Nombre };
+            var comando = new CommandCrearConsultorio { Nombre = _in.Nombre };
 
             var resultado = await mediator.Send(comando);
 
             return Ok();
+        }
 
-            //return resultado.EsExitoso ? Ok(resultado.Valor) : BadRequest(resultado.Error);
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, Consultorio_up up)
+        {
+            var comando = new ComandoActualizarConsultorio { Id = id, Nombre = up.Nombre };
+            await mediator.Send(comando);
+            return Ok();
         }
     }
 }

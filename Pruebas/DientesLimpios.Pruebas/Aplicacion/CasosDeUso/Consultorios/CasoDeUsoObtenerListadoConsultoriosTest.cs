@@ -58,7 +58,6 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
                 Assert.AreEqual(esperado[i].Nombre, result[i].Nombre);
             }
         }
-        
 
         [TestMethod]
         public async Task Handle_consultoriosNoExisten_RetornaListaVacia()

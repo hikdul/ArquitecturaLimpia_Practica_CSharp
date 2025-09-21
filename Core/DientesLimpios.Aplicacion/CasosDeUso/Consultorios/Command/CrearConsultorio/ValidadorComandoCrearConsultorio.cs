@@ -6,7 +6,11 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsult
     {
         public ValidadorComandoCrearConsultorio()
         {
-            RuleFor(p => p.Nombre).NotEmpty().WithMessage("El campo {propertyName} es requerido");
+            RuleFor(p => p.Nombre)
+                .NotEmpty()
+                .WithMessage("El campo {propertyName} es requerido")
+                .MaximumLength(150)
+                .WithMessage("El nombre del consultorio no puede exceder los 150 caracteres.");
         }
     }
 }

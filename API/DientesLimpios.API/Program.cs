@@ -19,7 +19,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseManejadorDeExcepciones();
+app.UseManejadorDeExcepcionesMiddleware();
 
 if (app.Environment.IsDevelopment())
 {
