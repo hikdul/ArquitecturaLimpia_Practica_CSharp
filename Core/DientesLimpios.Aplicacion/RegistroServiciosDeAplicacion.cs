@@ -17,6 +17,20 @@ namespace DientesLimpios.Aplicacion
         {
             services.AddTransient<IMediator, MediadorSimple>();
 
+            // esto es para registrar ltodo los IrequestHandler con sus scopeds y demas
+            services.Scan(scan =>
+                scan.FromAssembliesOf(typeof(IMediator))
+                    .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<>)))
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime()
+                    .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime()
+            );
+
+            //note: se comenta la forma de registra servicios  de manera manual ya que se va a usar una dependencia para no tener que hacerlo ya que ironicamente tendre que crear muchisimas dependencias en esta capa del sistema.
+            /*
+
             services.AddScoped<
                 IRequestHandler<CommandCrearConsultorio, Guid>,
                 CasoDeUsoCrearConsultorio
@@ -41,6 +55,7 @@ namespace DientesLimpios.Aplicacion
                 IRequestHandler<ComandoBorrarConsultorio>,
                 CasoDeUsoBorrarConsultorio
             >();
+            */
 
             return services;
         }
