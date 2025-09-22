@@ -1,5 +1,6 @@
 using DientesLimpios.API.DTOs;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.BorrarConsultorio;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerListadoConsultorios;
 using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
@@ -53,7 +54,6 @@ namespace DientesLimpios.API.Controllers
         /// </summary>
         /// <param name="_in"></param>
         /// <returns></returns>
-
         [HttpPost]
         public async Task<IActionResult> Post(Consultorio_in _in)
         {
@@ -64,13 +64,20 @@ namespace DientesLimpios.API.Controllers
             return Ok();
         }
 
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, Consultorio_up up)
         {
             var comando = new ComandoActualizarConsultorio { Id = id, Nombre = up.Nombre };
             await mediator.Send(comando);
-            return Ok();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var comando = new ComandoBorrarConsultorio { Id = id };
+            await mediator.Send(comando);
+            return NoContent();
         }
     }
 }

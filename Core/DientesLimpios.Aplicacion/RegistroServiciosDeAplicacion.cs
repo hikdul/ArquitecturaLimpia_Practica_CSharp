@@ -1,5 +1,6 @@
 using System;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.BorrarConsultorio;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearConsultorio;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerListadoConsultorios;
 using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesConsultorio;
@@ -34,6 +35,11 @@ namespace DientesLimpios.Aplicacion
             services.AddScoped<
                 IRequestHandler<ComandoActualizarConsultorio>,
                 CasoDeUsoActualizarConsultorio
+            >();
+
+            services.AddScoped<
+                IRequestHandler<ComandoBorrarConsultorio>,
+                CasoDeUsoBorrarConsultorio
             >();
 
             return services;

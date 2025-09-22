@@ -5,6 +5,10 @@ Accept: application/json
 
 ###
 
+Get {{DientesLimpios.API_HostAddress}}/{{Id}}
+Content-Type: application/json
+
+###
 Post {{DientesLimpios.API_HostAddress}}
 Content-Type: application/json
 
@@ -12,5 +16,18 @@ Content-Type: application/json
     "nombre": "Consultorio A"
 }
 
+###
+
+Put {{DientesLimpios.API_HostAddress}}/{{Id}}
+Content-Type: application/json
+
+{
+    "nombre": "Consultorio A - modificado"
+}
+
+###
+
+Delete {{DientesLimpios.API_HostAddress}}/{{Id}}
+Content-Type: application/json
 
 ###
