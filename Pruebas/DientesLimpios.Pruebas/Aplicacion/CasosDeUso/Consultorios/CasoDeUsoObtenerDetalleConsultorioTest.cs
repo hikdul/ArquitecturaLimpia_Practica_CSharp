@@ -16,8 +16,10 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
     [TestClass]
     public class CasoDeUsoObtenerDetalleConsultorioTest
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         private IRepositoryConsultorios repository;
         private CasoDeUsoObtenerDetalleConsultorio casoDeUso;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
         [TestInitialize]
         public void Setud()

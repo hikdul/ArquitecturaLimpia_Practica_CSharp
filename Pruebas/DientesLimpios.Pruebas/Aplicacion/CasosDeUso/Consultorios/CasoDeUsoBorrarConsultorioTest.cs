@@ -1,5 +1,6 @@
 using System;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
+using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.BorrarConsultorio;
 using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Excepcion;
@@ -13,15 +14,12 @@ using NSubstitute.ReturnsExtensions;
 namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
 {
     [TestClass]
-    public class CasoDeUsoActualizarConsultorioTest
+    public class CasoDeUsoBorrarConsultorioTest
     {
-
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         private IRepositoryConsultorios repository;
-
         private IUnidadDeTrabajo unidadDeTrabajo;
-        private CasoDeUsoActualizarConsultorio casoDeUso;
-
+        private CasoDeUsoBorrarConsultorio casoDeUso;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
         [TestInitialize]
@@ -30,58 +28,47 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
             repository = Substitute.For<IRepositoryConsultorios>();
             //validador = Substitute.For<IValidator<CommandCrearConsultorio>>();
             unidadDeTrabajo = Substitute.For<IUnidadDeTrabajo>();
-            casoDeUso = new CasoDeUsoActualizarConsultorio(repository, unidadDeTrabajo);
+            casoDeUso = new CasoDeUsoBorrarConsultorio(repository, unidadDeTrabajo);
         }
 
         [TestMethod]
-        public async Task Handle_CuandoConsultorioExiste_acualizaNombreYPersiste()
+        public async Task Hanle_cuandoConsultorioExiiste_borraConsultorio()
         {
-            string nombre = Guid.NewGuid().ToString();
+            var id = Guid.NewGuid();
+            var nombre = Guid.NewGuid().ToString();
+            var command = new ComandoBorrarConsultorio { Id = id };
             var consultorio = new Consultorio(nombre);
-            var id = consultorio.Id;
-            var command = new ComandoActualizarConsultorio { Id = id, Nombre = $"{nombre} update" };
 
             repository.ObtenerPorId(id).Returns(consultorio);
 
             await casoDeUso.Handle(command);
-            await repository.Received(1).Actualizar(consultorio);
+
+            await repository.Received(1).borrar(consultorio);
             await unidadDeTrabajo.Received(1).Persistir();
         }
 
         [TestMethod]
         [ExpectedException(typeof(ExcepcionNoEncontrado))]
-        public async Task Handle_CuandoConsultorioNoExiste_throw()
+        public async Task Hanle_cuandoConsultorioNoExiiste_Throw()
         {
-            var command = new ComandoActualizarConsultorio
-            {
-                Id = Guid.NewGuid(),
-                Nombre = "cualquier cosa",
-            };
+            var comando = new ComandoBorrarConsultorio { Id = Guid.NewGuid() };
+            repository.ObtenerPorId(comando.Id).ReturnsNull();
 
-            repository.ObtenerPorId(command.Id).ReturnsNull();
-            await casoDeUso.Handle(command);
+            await casoDeUso.Handle(comando);
         }
 
         [TestMethod]
-        //[ExpectedException(typeof(ExcepcionNoEncontrado))]
-        public async Task Handle_CuandoOcurreExceccionAlActualizar_llamaReversarYLanzaExceccion()
+        public async Task Hanle_cuandoOcurreExcepcion_llamaAReversarYLanzaExcepccion()
         {
-            string nombre = Guid.NewGuid().ToString();
+            var id = Guid.NewGuid();
+            var nombre = Guid.NewGuid().ToString();
+            var command = new ComandoBorrarConsultorio { Id = id };
             var consultorio = new Consultorio(nombre);
-            var id = consultorio.Id;
-            var command = new ComandoActualizarConsultorio
-            {
-                Id = id,
-                Nombre = Guid.NewGuid().ToString(),
-            };
 
             repository.ObtenerPorId(id).Returns(consultorio);
-            repository.Actualizar(consultorio).Throws(new InvalidOperationException("no importa"));
 
-            await Assert.ThrowsExceptionAsync<InvalidOperationException>(() =>
-                casoDeUso.Handle(command)
-            );
-
+            repository.borrar(consultorio).Throws(new InvalidOperationException("no importa"));
+            await Assert.ThrowsExceptionAsync<InvalidOperationException>(() => casoDeUso.Handle(command));
             await unidadDeTrabajo.Received(1).Reversar();
         }
     }
