@@ -31,6 +31,14 @@ namespace DientesLimpios.API.Controllers
             return result.Elements;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PacienteDTO>> GetById(Guid id)
+        {
+            var consulta = new ConsultaObtenerPacientePorId { Id = id };
+            var result = await mediator.Send(consulta);
+            return result;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Paciente_in ins)
         {
