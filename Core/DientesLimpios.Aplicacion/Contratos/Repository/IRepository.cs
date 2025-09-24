@@ -13,5 +13,6 @@ namespace DientesLimpios.Aplicacion.Contratos.Repository
         Task<IEnumerable<T>> ObtenerTodos();
         Task<T> Agregar(T entidad);
         Task borrar(T entidad);
+        Task<int> ObtenerCantidadTotalRegistros();
     }
 }

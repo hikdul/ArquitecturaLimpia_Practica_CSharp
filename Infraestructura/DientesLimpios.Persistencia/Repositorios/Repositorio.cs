@@ -26,6 +26,11 @@ namespace DientesLimpios.Persistencia.Repositorios
             return await context.Set<T>().ToListAsync();
         }
 
+        public async Task<int> ObtenerCantidadTotalRegistros()
+        {
+            return await context.Set<T>().CountAsync();
+        }
+
         public Task<T> Agregar(T entidad)
         {
             context.Add(entidad);
