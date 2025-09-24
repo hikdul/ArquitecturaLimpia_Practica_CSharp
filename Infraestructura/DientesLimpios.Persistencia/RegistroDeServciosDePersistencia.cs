@@ -13,8 +13,8 @@ namespace DientesLimpios.Persistencia
             this IServiceCollection servicios
         )
         {
-            servicios.AddDbContext<DientesLimpiosDBContext>(
-                options => options.UseSqlServer("name=DientesLimpiosDBConnectionString")
+            servicios.AddDbContext<DientesLimpiosDBContext>(options =>
+                options.UseSqlServer("name=DientesLimpiosDBConnectionString")
             );
 
             servicios.AddScoped<IUnidadDeTrabajo, UnidadDeTrabjoEFCore>();

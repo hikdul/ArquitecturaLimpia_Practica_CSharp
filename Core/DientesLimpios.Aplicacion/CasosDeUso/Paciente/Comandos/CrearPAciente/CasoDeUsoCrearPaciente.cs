@@ -1,9 +1,7 @@
-
-using DientesLimpios.Dominio.ObjetosDeValor;
-using DientesLimpios.Dominio.Entidades;
-using DientesLimpios.Aplicacion.Utilidades.Mediador;
-using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Contratos.Persistencia;
+using DientesLimpios.Aplicacion.Contratos.Repository;
+using DientesLimpios.Aplicacion.Utilidades.Mediador;
+using DientesLimpios.Dominio.ObjetosDeValor;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.CrearPaciente
 {
@@ -24,7 +22,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.CrearPaciente
         public async Task<Guid> Handle(ComandoCrearPaciente command)
         {
             var email = new Email(command.Email);
-            Paciente paciente = new (command.Nombre, email);
+            Dominio.Entidades.Paciente paciente = new(command.Nombre, email);
 
             try
             {
