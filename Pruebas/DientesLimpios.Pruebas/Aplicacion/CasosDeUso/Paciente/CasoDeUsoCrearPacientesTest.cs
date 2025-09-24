@@ -33,14 +33,21 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Paciente
         {
             string name = Guid.NewGuid().ToString().Replace("-", "");
             var command = new ComandoCrearPaciente { Nombre = name, Email = $"{name}@test.com" };
-            var pacienteCreated = new Paciente(name, new Email(command.Email));
+            var pacienteCreated = new DientesLimpios.Dominio.Entidades.Paciente(
+                name,
+                new DientesLimpios.Dominio.ObjetosDeValor.Email(command.Email)
+            );
             var id = pacienteCreated.Id;
 
-            repository.Agregar(Arg.Any<Paciente>()).Returns(pacienteCreated);
+            repository
+                .Agregar(Arg.Any<DientesLimpios.Dominio.Entidades.Paciente>())
+                .Returns(pacienteCreated);
             var IdResult = await casoDeUso.Handle(command);
 
             Assert.AreEqual(id, IdResult);
-            await repository.Received(1).Agregar(Arg.Any<Paciente>());
+            await repository
+                .Received(1)
+                .Agregar(Arg.Any<DientesLimpios.Dominio.Entidades.Paciente>());
             await unidadDeTrabajo.Received(1).Persistir();
         }
     }
