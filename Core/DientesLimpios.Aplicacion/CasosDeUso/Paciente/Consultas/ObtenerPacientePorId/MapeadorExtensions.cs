@@ -1,6 +1,6 @@
 using System;
 
-namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas
+namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas.ObtenerPorId
 {
     public static class MapeadorExtensions
     {

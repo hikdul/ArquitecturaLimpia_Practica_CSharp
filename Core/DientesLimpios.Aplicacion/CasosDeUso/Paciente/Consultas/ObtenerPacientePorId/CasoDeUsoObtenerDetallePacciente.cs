@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas.ObtenerPorId;
 using DientesLimpios.Aplicacion.Contratos.Repository;
+using DientesLimpios.Aplicacion.Excepcion;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas
@@ -24,6 +26,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas
             }
 
             var dto = paciente.ADto();
+            return dto;
         }
     }
 }

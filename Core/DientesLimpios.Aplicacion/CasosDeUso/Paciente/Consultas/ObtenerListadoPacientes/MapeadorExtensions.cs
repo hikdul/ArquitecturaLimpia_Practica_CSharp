@@ -1,10 +1,10 @@
-using DientesLimpios.Dominio.Entidades;
+//using DientesLimpios.Dominio.Entidades;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas
 {
     public static class MapeadorExtensions
     {
-        public static PacienteListadoDTO ADto(
+        public static PacienteListadoDTO Adto(
             this DientesLimpios.Dominio.Entidades.Paciente paciente
         )
         {
