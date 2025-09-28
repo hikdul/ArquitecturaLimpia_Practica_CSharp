@@ -4,5 +4,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas
     {
         public int Pagina { get; set; }
         public int RegistroPorPagina { get; set; }
+        public string? Nombre { get; set; }
+        public string? Email { get; set; }
     }
 }

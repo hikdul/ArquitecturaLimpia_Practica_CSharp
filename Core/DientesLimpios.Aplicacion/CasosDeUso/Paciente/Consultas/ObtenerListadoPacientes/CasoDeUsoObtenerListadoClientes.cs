@@ -22,11 +22,8 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Consultas
             var totalPacientes = await repository.ObtenerCantidadTotalRegistros();
             List<PacienteListadoDTO> pacienteDTO = pacientes.Select(p => p.Adto()).ToList();
 
-            PaginadoDTO<PacienteListadoDTO> _out = new()
-            {
-                Elements = pacienteDTO,
-                Total = totalPacientes,
-            };
+            PaginadoDTO<PacienteListadoDTO> _out =
+                new() { Elements = pacienteDTO, Total = totalPacientes, };
 
             return _out;
         }
