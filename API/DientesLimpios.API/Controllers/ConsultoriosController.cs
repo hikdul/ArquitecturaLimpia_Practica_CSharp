@@ -59,7 +59,7 @@ namespace DientesLimpios.API.Controllers
         {
             var comando = new CommandCrearConsultorio { Nombre = _in.Nombre };
 
-            var resultado = await mediator.Send(comando);
+            await mediator.Send(comando);
 
             return Ok();
         }
