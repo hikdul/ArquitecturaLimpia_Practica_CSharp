@@ -5,6 +5,7 @@ using DientesLimpios.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,9 +13,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DientesLimpios.Persistencia.Migrations
 {
     [DbContext(typeof(DientesLimpiosDBContext))]
-    partial class DientesLimpiosDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250929171748_TablaDentistasMigration")]
+    partial class TablaDentistasMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,33 +40,6 @@ namespace DientesLimpios.Persistencia.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Consultorios");
-                });
-
-            modelBuilder.Entity("DientesLimpios.Dominio.Entidades.Dentista", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.ComplexProperty<Dictionary<string, object>>("Email", "DientesLimpios.Dominio.Entidades.Dentista.Email#Email", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<string>("Valor")
-                                .IsRequired()
-                                .HasMaxLength(254)
-                                .HasColumnType("nvarchar(254)")
-                                .HasColumnName("Email");
-                        });
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Dentistas");
                 });
 
             modelBuilder.Entity("DientesLimpios.Dominio.Entidades.Paciente", b =>
