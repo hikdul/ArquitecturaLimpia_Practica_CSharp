@@ -48,26 +48,5 @@ namespace DientesLimpios.API.Controllers
             //return CreatedAtAction(nameof(CrearPaciente), new { id = resultado }, null);
             return Ok();
         }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] Paciente_up ins)
-        {
-            var command = new ComandoActualizarPaciente
-            {
-                Id = id,
-                Nombre = ins.Nombre,
-                Email = ins.Email
-            };
-            await mediator.Send(command);
-            return NoContent();
-        }
-        
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var command = new ComandoBorrarPaciente { Id = id };
-            await mediator.Send(command);
-            return NoContent();
-        }
     }
 }
