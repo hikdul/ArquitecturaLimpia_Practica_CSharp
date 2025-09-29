@@ -1,6 +1,13 @@
+using System;
+using System.Threading.Tasks;
 using DientesLimpios.Dominio.Entidades;
 
 namespace DientesLimpios.Aplicacion.Contratos.Repository
 {
-    public interface IRepositoryCita : IRepository<Cita> { }
+    public interface IRepositoryCita : IRepository<Cita>
+    {
+        Task<bool> ExisteCitaEnRango(Guid dentistaId, DateTime inicio, DateTime fin);
+        //?: con el new reemplaza el metodo del padre (IRepository) para que retorne una Cita y no un objeto generico
+        new Task<Cita?> ObtenerPorId(Guid id);
+    }
 }

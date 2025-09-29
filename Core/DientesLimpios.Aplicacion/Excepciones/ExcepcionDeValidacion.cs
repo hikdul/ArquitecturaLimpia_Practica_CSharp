@@ -8,6 +8,11 @@ namespace DientesLimpios.Aplicacion.Excepcion
     {
         public List<string> ErroresDeValidacion { get; set; } = [];
 
+        public ExcepcionDeValidacion(string errorMessage)
+        {
+            ErroresDeValidacion.Add(errorMessage);
+        }
+
         public ExcepcionDeValidacion(ValidationResult validationResult)
         {
             foreach (var err in validationResult.Errors)
