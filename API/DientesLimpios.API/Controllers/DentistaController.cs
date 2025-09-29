@@ -2,7 +2,7 @@ using DientesLimpios.API.DTOs;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.BorrarDentista;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearDentista;
-using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.EditarDentista;
+using DientesLimpios.Aplicacion.CasosDeUso.Dentistas.Command.EditarDentista;
 using DientesLimpios.Aplicacion.Consultas.ObtenerDetallesDentista;
 using DientesLimpios.Aplicacion.Consultas.ObtenerListadoDentista;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
@@ -57,7 +57,7 @@ namespace DientesLimpios.API.Controllers
             await mediator.Send(comando);
             return NoContent();
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> Borrar(Guid id)
         {
