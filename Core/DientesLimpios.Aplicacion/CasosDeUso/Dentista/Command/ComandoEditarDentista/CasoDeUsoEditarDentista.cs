@@ -3,12 +3,12 @@ using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Excepcion;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 
-namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.EditarDentista
+namespace DientesLimpios.Aplicacion.CasosDeUso.Dentistas.Command.EditarDentista
 {
     public class CasoDeUsoEditarDentista : IRequestHandler<ComandoEditarDentista>
     {
         private readonly IRepositoryDentista repository;
-        private readonly IUnidadDeTrabajo unidadDeTrabajo;
+       private readonly IUnidadDeTrabajo unidadDeTrabajo;
 
         public CasoDeUsoEditarDentista(
             IRepositoryDentista repository,
@@ -21,11 +21,8 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.EditarDentis
 
         public async Task Handle(ComandoEditarDentista request)
         {
-            var dientologo = await repository.ObtenerPorId(request.Id);
-            if (dientologo is null)
-            {
-                throw new ExcepcionNoEncontrado();
-            }
+            var dientologo =
+                await repository.ObtenerPorId(request.Id) ?? throw new ExcepcionNoEncontrado();
 
             dientologo.actualizarEmail(new(request.Email));
             dientologo.actualizarNombre(request.Nombre);

@@ -1,6 +1,6 @@
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 
-namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.EditarDentista
+namespace DientesLimpios.Aplicacion.CasosDeUso.Dentistas.Command.EditarDentista
 {
     public class ComandoEditarDentista : IRequest
     {
