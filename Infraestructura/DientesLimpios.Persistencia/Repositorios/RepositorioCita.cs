@@ -3,9 +3,9 @@ using DientesLimpios.Dominio.Entidades;
 
 namespace DientesLimpios.Persistencia.Repositorios
 {
-    public class RepositorioConsultorios : Repositorio<Consultorio>, IRepositoryConsultorios
+    public class RepositorioCita : Repositorio<Cita>, IRepositoryCita
     {
-        public RepositorioConsultorios(DientesLimpiosDBContext context)
+        public RepositorioCita(DientesLimpiosDBContext context)
             : base(context) { }
     }
 }

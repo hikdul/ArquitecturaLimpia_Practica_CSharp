@@ -1,5 +1,4 @@
 using DientesLimpios.API.DTOs;
-using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.ActualizarConsultorios;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.BorrarDentista;
 using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Command.CrearDentista;
 using DientesLimpios.Aplicacion.CasosDeUso.Dentistas.Command.EditarDentista;
@@ -55,7 +54,7 @@ namespace DientesLimpios.API.Controllers
                 Email = ins.Email,
             };
             await mediator.Send(comando);
-            return NoContent();
+          return NoContent();
         }
 
         [HttpDelete("{id}")]

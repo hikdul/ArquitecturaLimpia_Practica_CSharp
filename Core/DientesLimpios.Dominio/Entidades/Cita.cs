@@ -29,10 +29,7 @@ namespace DientesLimpios.Dominio.Entidades
             IntervaloDeTiempo intervaloDeTiempo
         )
         {
-            if (intervaloDeTiempo.Inicio < DateTime.UtcNow)
-            {
-                throw new EXcepcionDeReglaDeNegocio($"Esta fecha ya paso");
-            }
+            ReglaNegocioIntervaloTiempo(intervaloDeTiempo);
 
             Id = Guid.CreateVersion7();
             this.Estado = EstadoCita.Programada;
@@ -42,6 +39,40 @@ namespace DientesLimpios.Dominio.Entidades
             this.IntervaloDeTiempo = intervaloDeTiempo;
         }
 
+        public void UPDentista(Guid id)
+        {
+            this.DentistaId = id;
+        }
+
+        public void UpConsultorio(Guid id)
+        {
+            this.ConsultorioId = id;
+        }
+
+        public void UPPaciente(Guid id)
+        {
+            this.PacienteId = id;
+        }
+
+        #region intervalo Tiempo
+
+        public void UPIntervaloTiempo(IntervaloDeTiempo intervaloDeTiempo)
+        {
+            ReglaNegocioIntervaloTiempo(intervaloDeTiempo);
+            this.IntervaloDeTiempo = intervaloDeTiempo;
+        }
+
+        private void ReglaNegocioIntervaloTiempo(IntervaloDeTiempo intervaloDeTiempo)
+        {
+            if (intervaloDeTiempo.Inicio < DateTime.UtcNow)
+            {
+                throw new EXcepcionDeReglaDeNegocio($"Esta fecha ya paso");
+            }
+        }
+
+        #endregion
+
+        #region estado Cita
         //?: para modificar elemneto solo se hacen desde esta misma clase, para que de este modo se cumplan las reglas del negocio
 
         public void Cacelar()
@@ -61,5 +92,6 @@ namespace DientesLimpios.Dominio.Entidades
             }
             this.Estado = EstadoCita.Completada;
         }
+        #endregion
     }
 }

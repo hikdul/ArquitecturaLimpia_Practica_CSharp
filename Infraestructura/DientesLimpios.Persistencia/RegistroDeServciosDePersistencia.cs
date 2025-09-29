@@ -21,6 +21,7 @@ namespace DientesLimpios.Persistencia
             servicios.AddScoped<IRepositoryConsultorios, RepositorioConsultorios>();
             servicios.AddScoped<IRepositoryPacientes, RepositorioPaciente>();
             servicios.AddScoped<IRepositoryDentista, RepositorioDentista>();
+            servicios.AddScoped<IRepositoryCita, RepositorioCita>();
 
             return servicios;
         }
