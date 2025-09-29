@@ -1,16 +1,19 @@
 using System;
 using DientesLimpios.Aplicacion.Contratos.Persistencia;
+using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Excepcion;
+using DientesLimpios.Aplicacion.Utilidades.Mediador;
+using DientesLimpios.Dominio.ObjetosDeValor;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.ActualizarPaciente
 {
     public class CasoDeUsoComandoActualizarPaciente : IRequestHandler<ComandoActualizarPaciente>
     {
-        private readonly IRepositorioPaciente repositorio;
+        private readonly IRepositoryPacientes repositorio;
         private readonly IUnidadDeTrabajo unitOfWork;
 
         public CasoDeUsoComandoActualizarPaciente(
-            IRepositorioPaciente repositorioPaciente,
+            IRepositoryPacientes repositorioPaciente,
             IUnidadDeTrabajo unitOfWork
         )
         {
@@ -18,20 +21,17 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.ActualizarPacie
             this.repositorio = repositorioPaciente;
         }
 
-        public async Task Handle(
-            ComandoActualizarPaciente request,
-            CancellationToken cancellationToken
-        )
+        public async Task Handle(ComandoActualizarPaciente request)
         {
-            var paciente = repositorio.ObtenerPorId(request.Id);
+            var paciente = await repositorio.ObtenerPorId(request.Id);
 
             if (paciente is null)
             {
                 throw new ExcepcionNoEncontrado();
             }
 
-            paciente.ActualizarNombre(request.Nombre);
-            paciente.ActualizarEmail(request.Email);
+            paciente.actualizarNombre(request.Nombre);
+            paciente.actualizarEmail(new(request.Email));
 
             try
             {

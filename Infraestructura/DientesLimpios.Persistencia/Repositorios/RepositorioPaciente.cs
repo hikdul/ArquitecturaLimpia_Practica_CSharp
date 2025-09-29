@@ -27,11 +27,11 @@ namespace DientesLimpios.Persistencia.Repositorios
 
             if (!string.IsNullOrEmpty(filtro.Email))
             {
-                querable = querable.Where(p => p.Email.Contains(filtro.Email));
+                querable = querable.Where(p => p.Email.Valor.Contains(filtro.Email));
             }
 
             return await querable
-                .Pacientes.OrderBy(x => x.Nombre)
+                .OrderBy(x => x.Nombre)
                 .Paginar(filtro.Pagina, filtro.RegistroPorPagina)
                 .ToListAsync();
         }

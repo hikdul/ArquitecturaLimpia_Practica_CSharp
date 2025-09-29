@@ -1,10 +1,11 @@
+using DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.CrearPaciente;
 using FluentValidation;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.ActualizarPaciente
 {
     public class ValidadorComandoActualizarPaciente : AbstractValidator<ComandoCrearPaciente>
     {
-        public ValidadorComandoCrearPaciente()
+        public ValidadorComandoActualizarPaciente()
         {
             RuleFor(x => x.Nombre)
                 .NotEmpty()

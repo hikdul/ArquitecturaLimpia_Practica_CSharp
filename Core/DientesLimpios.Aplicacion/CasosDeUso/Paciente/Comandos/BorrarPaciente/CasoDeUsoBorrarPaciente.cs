@@ -1,15 +1,18 @@
 using System;
+using DientesLimpios.Aplicacion.Contratos.Persistencia;
+using DientesLimpios.Aplicacion.Contratos.Repository;
+using DientesLimpios.Aplicacion.Excepcion;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.BorrarPaciente
 {
     public class CasoDeUsoBorrarPaciente : IRequestHandler<ComandoBorrarPaciente>
     {
-        private readonly IRepositorioPaciente repositorio;
+        private readonly IRepositoryPacientes repositorio;
         private readonly IUnidadDeTrabajo unitOfWork;
 
         public CasoDeUsoBorrarPaciente(
-            IRepositorioPaciente repositorioPaciente,
+            IRepositoryPacientes repositorioPaciente,
             IUnidadDeTrabajo unitOfWork
         )
         {
@@ -17,9 +20,9 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.BorrarPaciente
             this.repositorio = repositorioPaciente;
         }
 
-        public async Task Handle(ComandoBorrarPaciente request, CancellationToken cancellationToken)
+        public async Task Handle(ComandoBorrarPaciente request)
         {
-            var paciente = repositorio.ObtenerPorId(request.Id);
+            var paciente = await repositorio.ObtenerPorId(request.Id);
 
             if (paciente is null)
             {
@@ -28,7 +31,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Paciente.Comandos.BorrarPaciente
 
             try
             {
-                await repositorio.Borrar(paciente);
+                await repositorio.borrar(paciente);
                 await unitOfWork.Persistir();
             }
             catch (Exception)
