@@ -1,7 +1,6 @@
 using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Dominio.Entidades;
-
-namespace DientesLimpios.Dominio.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace DientesLimpios.Persistencia.Repositorios
 {
@@ -17,11 +16,13 @@ namespace DientesLimpios.Persistencia.Repositorios
 
         public new async Task<Cita> ObtenerPorId(Guid Id)
         {
-            return await context
+            var cita = await context
                 .Citas.Include(c => c.Paciente)
                 .Include(c => c.Dentista)
                 .Include(c => c.Consultorio)
                 .FirstOrDefaultAsync(c => c.Id == Id);
+
+            return cita;
         }
 
         public async Task<bool> ExisteCitaEnRango(Guid dentistaId, DateTime inicio, DateTime fin)
@@ -29,9 +30,9 @@ namespace DientesLimpios.Persistencia.Repositorios
             return await context
                 .Citas.Where(c =>
                     c.DentistaId == dentistaId
-                    && c.Estado == EstadoCita.Programada
-                    && c.Inicio < x.IntervaloDeTiempo.Fin
-                    && c.fin > x.IntervaloDeTiempo.Inicio
+                    && c.Estado == Dominio.Enums.EstadoCita.Programada
+                    && c.IntervaloDeTiempo.Inicio < fin
+                    && c.IntervaloDeTiempo.Fin > inicio
                 )
                 .AnyAsync();
         }
