@@ -2,8 +2,11 @@ using DientesLimpios.API.DTOs;
 using DientesLimpios.Aplicacion.CasosDeUso.Cita.Comando.Actualizar;
 using DientesLimpios.Aplicacion.CasosDeUso.Cita.Comando.Borrar;
 using DientesLimpios.Aplicacion.CasosDeUso.Cita.Comando.Crear;
+using DientesLimpios.Aplicacion.CasosDeUso.Cita.Command.CancelarCita;
+using DientesLimpios.Aplicacion.CasosDeUso.Cita.Command.CompletarCita;
 using DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerDetallePorID;
 using DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerListado;
+using DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerListadoFG;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +15,7 @@ namespace DientesLimpios.API.Controllers
 {
     [ApiController]
     [Route("api/Consultorios")]
-    public class CitaController: ControllerBase
+    public class CitaController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -29,11 +32,11 @@ namespace DientesLimpios.API.Controllers
             return Ok(resultado);
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] ConsultaObtenerListadoCitasFG consulta)
         {
-            var consulta = new ConsultaObtenerListado();
+            //?: con solo cambiar esto ya se modifico todo en el controlador
+            //var consulta = new ConsultaObtenerListado();
             var result = await mediator.Send(consulta);
             return Ok(result);
         }
@@ -49,8 +52,24 @@ namespace DientesLimpios.API.Controllers
                 Fin = ins.Fin,
                 DentistaId = ins.DentistaId,
             };
-            var result = await mediator.Send(command);
+            await mediator.Send(command);
             return Created();
+        }
+
+        [HttpPost("{id}/Completar")]
+        public async Task<IActionResult> Completar(Guid id)
+        {
+            var consulta = new ComandoCompletarCita { Id = id };
+            await mediator.Send(consulta);
+            return Ok();
+        }
+
+        [HttpPost("{id}/Cancelar")]
+        public async Task<IActionResult> Cancelar(Guid id)
+        {
+            var consulta = new ComandoCancelarCita { Id = id };
+            await mediator.Send(consulta);
+            return Ok();
         }
 
         [HttpPut("{id}")]
