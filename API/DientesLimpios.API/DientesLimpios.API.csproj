@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\DientesLimpios.Aplicacion\DientesLimpios.Aplicacion.csproj" />
     <ProjectReference Include="..\..\Infraestructura\DientesLimpios.Persistencia\DientesLimpios.Persistencia.csproj" />
+    <ProjectReference Include="..\..\Infraestructura\DientesLimpios.Infraestructura\DientesLimpios.Infraestructura.csproj" />
   </ItemGroup>
 
 </Project>
