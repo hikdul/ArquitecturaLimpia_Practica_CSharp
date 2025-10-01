@@ -1,10 +1,10 @@
-
 using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerListadoFG
 {
-    public class CasoDeUsoObtenerListaCitasFG : IRequestHandler<ConsultaObtenerListadoCitasFG, List<CitaListadoDTO>>
+    public class CasoDeUsoObtenerListaCitasFG
+        : IRequestHandler<ConsultaObtenerListadoCitasFG, List<CitaListadoDTO>>
     {
         private readonly IRepositoryCita repository;
 
@@ -12,6 +12,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerListadoFG
         {
             this.repository = repository;
         }
+
         public async Task<List<CitaListadoDTO>> Handle(ConsultaObtenerListadoCitasFG request)
         {
             var citas = await repository.ObtenerFiltrado(request);
