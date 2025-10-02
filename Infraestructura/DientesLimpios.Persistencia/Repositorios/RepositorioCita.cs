@@ -61,6 +61,11 @@ namespace DientesLimpios.Persistencia.Repositorios
                 queryable = queryable.Where(x => x.PacienteId == filtro.PacienteId);
             }
 
+            if (filtro.EstadoCita is not null)
+            {
+                queryable = queryable.Where(x => x.Estado == filtro.EstadoCita);
+            }
+
             var Ents = await queryable
                 .Where(y =>
                     y.IntervaloDeTiempo.Inicio >= filtro.Inicio
