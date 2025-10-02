@@ -1,6 +1,7 @@
 using DientesLimpios.Aplicacion;
 using DientesLimpios.Persistencia;
 using DientesLimpios.API.Middleware;
+using DientesLimpios.Infraestructura;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddOpenApi();
 //!: my own services
 builder.Services.AgregarServiciosDeApliacion();
 builder.Services.AgregarServiciosDePersistencia();
+builder.Services.AgregarServiciosDeInfraestructura();
 
 var app = builder.Build();
 

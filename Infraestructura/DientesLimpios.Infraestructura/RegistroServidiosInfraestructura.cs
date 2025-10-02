@@ -1,6 +1,8 @@
-using System;
-using DientesLimpios.Aplicacion.Contratos.Notificaciones;
+
 using Microsoft.Extensions.DependencyInjection;
+using DientesLimpios.Aplicacion.Utilidades.Mediador;
+using DientesLimpios.Aplicacion.Contratos.Notificaciones;
+using DientesLimpios.Innfraestructura.Notificaciones;
 
 namespace DientesLimpios.Innfraestructura
 {
@@ -10,7 +12,7 @@ namespace DientesLimpios.Innfraestructura
             this IServiceCollection services
         )
         {
-            services.AddScoped<IServicioNotificaciones, ServicioCorreos>();
+            services.AddScoped<IServiceNotificaciones, ServicioCorreos>();
             return services;
         }
     }

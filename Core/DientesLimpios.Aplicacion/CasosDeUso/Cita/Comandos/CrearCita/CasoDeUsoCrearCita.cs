@@ -1,8 +1,9 @@
+using DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerDetallePorID;
+using DientesLimpios.Aplicacion.CasosDeUso.Cita.Consulta.ObtenerListadoFG;
 using DientesLimpios.Aplicacion.Contratos.Notificaciones;
 using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repository;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
-using DientesLimpios.Dominio.Entidades;
 using DientesLimpios.Dominio.ObjetosDeValor;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Cita.Comando.Crear
@@ -34,13 +35,13 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Cita.Comando.Crear
                 it
             );
 
-            Guid? Id = null;
+            Guid? id = null;
 
             try
             {
                 var resp = await repository.Agregar(Cita);
                 await unidadDeTrabajo.Persistir();
-                Id = resp.Id;
+                id = resp.Id;
             }
             catch (Exception ex)
             {
@@ -49,11 +50,11 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Cita.Comando.Crear
                 throw;
             }
 
-            var citaDB = await repository.ObtenerPorId(Id.Value);
+            var citaDB = await repository.ObtenerPorId(id.Value);
             var notificacion = citaDB.aDto();
             await serviceNotificaciones.EnviarConfirmacionCita(notificacion);
 
-            return Id.Value;
+            return id.Value;
         }
     }
 }

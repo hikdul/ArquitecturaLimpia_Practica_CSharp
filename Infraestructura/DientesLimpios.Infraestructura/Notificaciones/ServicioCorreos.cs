@@ -4,7 +4,7 @@ using DientesLimpios.Aplicacion.Contratos.Notificaciones;
 
 namespace DientesLimpios.Innfraestructura.Notificaciones
 {
-    public class ServicioCorreos : IServicioNotificaciones
+    public class ServicioCorreos : IServiceNotificaciones
     {
         public Task EnviarConfirmacionCita(ConfirmacionCitaDTO cita)
         {
